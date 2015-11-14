@@ -1,0 +1,73 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#DH_VERBOSE = 1
+
+# see EXAMPLES in dpkg-buildflags(1) and read /usr/share/dpkg/*
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/default.mk
+
+# see FEATURE AREAS in dpkg-buildflags(1)
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# see ENVIRONMENT in dpkg-buildflags(1)
+# package maintainers to append CFLAGS
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+# package maintainers to append LDFLAGS
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+# set destdir
+DESTDIR_FB=$(CURDIR)/debian/eglinfo-fb
+DESTDIR_WL=$(CURDIR)/debian/eglinfo-wl
+DESTDIR_X11=$(CURDIR)/debian/eglinfo-x11
+
+# main packaging script based on dh7 syntax
+%:
+	dh $@ 
+
+override_dh_auto_clean:
+	rm -rf build
+	rm -rf .waf*
+	rm -rf .lock*
+
+override_dh_auto_install:
+	# FB
+	env \
+		LDFLAGS="-L/usr/lib/galcore/fb -L/usr/lib/galcore" \
+		./waf configure \
+		--prefix=/usr \
+		--device=imx6 \
+		--platform=fb
+	./waf build
+	./waf install \
+		--destdir=$(DESTDIR_FB)
+	mv $(DESTDIR_FB)/usr/bin/eglinfo $(DESTDIR_FB)/usr/bin/eglinfo_fb
+
+	# WL
+	env \
+		LDFLAGS="-L/usr/lib/galcore/wl -L/usr/lib/galcore" \
+		./waf configure \
+		--prefix=/usr \
+		--device=imx6 \
+		--platform=wayland
+	./waf build
+	./waf install \
+		--destdir=$(DESTDIR_WL)
+	mv $(DESTDIR_WL)/usr/bin/eglinfo $(DESTDIR_WL)/usr/bin/eglinfo_wl
+
+	# X11
+	env \
+		LDFLAGS="-L/usr/lib/galcore/x11 -L/usr/lib/galcore" \
+		./waf configure \
+		--prefix=/usr \
+		--device=imx6 \
+		--platform=x11
+	./waf build
+	./waf install \
+		--destdir=$(DESTDIR_X11)
+	mv $(DESTDIR_X11)/usr/bin/eglinfo $(DESTDIR_X11)/usr/bin/eglinfo_x11
+
+override_dh_shlibdeps:
+	dh_shlibdeps -peglinfo-fb -l/usr/lib/galcore/fb:/usr/lib/galcore -- --ignore-missing-info -ximx-gpu-viv-fb -ximx-gpu-viv-dfb -ximx-gpu-viv-x11 -ximx-gpu-viv-wl
+	dh_shlibdeps -peglinfo-wl -l/usr/lib/galcore/wl:/usr/lib/galcore -- --ignore-missing-info -ximx-gpu-viv-fb -ximx-gpu-viv-dfb -ximx-gpu-viv-x11 -ximx-gpu-viv-wl
+	dh_shlibdeps -peglinfo-x11 -l/usr/lib/galcore/x11:/usr/lib/galcore -- --ignore-missing-info -ximx-gpu-viv-fb -ximx-gpu-viv-dfb -ximx-gpu-viv-x11 -ximx-gpu-viv-wl

@@ -1,0 +1,31 @@
+Source: eglinfo
+Section: unknown
+Priority: optional
+Maintainer: Carlos Rafael Giani
+Build-Depends:
+ debhelper (>= 9),
+ python,
+ imx-gpu-viv-fb-dev,
+ imx-gpu-viv-wl-dev,
+ libwayland-dev,
+ imx-gpu-viv-x11-dev,
+Standards-Version: 3.9.5
+Homepage: https://github.com/dv1/eglinfo
+
+Package: eglinfo-fb
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, imx-gpu-viv-fb
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
+
+Package: eglinfo-wl
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, imx-gpu-viv-wl
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
+
+Package: eglinfo-x11
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, imx-gpu-viv-x11
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
