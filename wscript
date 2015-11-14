@@ -120,6 +120,7 @@ def check_x11(conf, uselib = ''):
 
 def check_wayland(conf, uselib = ''):
 	return \
+	  conf.check_cfg(mandatory = 0, package = 'wayland-server', uselib_store = 'WAYLAND_SERVER', args = '--cflags --libs') and \
 	  conf.check_cfg(mandatory = 0, package = 'wayland-client', uselib_store = 'WAYLAND_CLIENT', args = '--cflags --libs') and \
 	  conf.check_cfg(mandatory = 0, package = 'wayland-cursor', uselib_store = 'WAYLAND_CURSOR', args = '--cflags --libs') and \
 	  conf.check_cfg(mandatory = 0, package = 'wayland-egl',    uselib_store = 'WAYLAND_EGL',    args = '--cflags --libs')
@@ -170,7 +171,7 @@ def configure_raspberrypi_device(conf, platform):
 	elif platform == "wayland":
 		check_wayland(conf)
 		conf.env['PLATFORM_SOURCE'] = ['src/platform_wayland_generic.cpp']
-		conf.env['PLATFORM_USELIBS'] += ["WAYLAND_CLIENT", "WAYLAND_CURSOR", "WAYLAND_EGL"]
+		conf.env['PLATFORM_USELIBS'] += ["WAYLAND_SERVER", "WAYLAND_CLIENT", "WAYLAND_CURSOR", "WAYLAND_EGL"]
 	else:
 		conf.fatal('Unsupported Raspberry Pi platform "%s"' % platform)
 		return
@@ -199,7 +200,7 @@ def configure_beagleboard_device(conf, platform):
 	elif platform == "wayland":
 		check_wayland(conf)
 		conf.env['PLATFORM_SOURCE'] = ['src/platform_wayland_generic.cpp']
-		conf.env['PLATFORM_USELIBS'] += ["WAYLAND_CLIENT", "WAYLAND_CURSOR", "WAYLAND_EGL"]
+		conf.env['PLATFORM_USELIBS'] += ["WAYLAND_SERVER", "WAYLAND_CLIENT", "WAYLAND_CURSOR", "WAYLAND_EGL"]
 	else:
 		conf.fatal('Unsupported BeagleBoard platform "%s"' % platform)
 		return
@@ -240,7 +241,7 @@ def configure_imx6_device(conf, platform):
 		check_wayland(conf)
 		check_vivante_egl(conf, ['EGL_API_FB', 'WL_EGL_PLATFORM'])
 		conf.env['PLATFORM_SOURCE'] = ['src/platform_wayland_generic.cpp']
-		conf.env['PLATFORM_USELIBS'] += ["WAYLAND_CLIENT", "WAYLAND_CURSOR", "WAYLAND_EGL"]
+		conf.env['PLATFORM_USELIBS'] += ["WAYLAND_SERVER", "WAYLAND_CLIENT", "WAYLAND_CURSOR", "WAYLAND_EGL"]
 	else:
 		conf.fatal('Unsupported imx6 platform "%s"' % platform)
 		return
@@ -258,7 +259,7 @@ def configure_generic_device(conf, platform):
 	elif platform == "wayland":
 		check_wayland(conf)
 		conf.env['PLATFORM_SOURCE'] = ['src/platform_wayland_generic.cpp']
-		conf.env['PLATFORM_USELIBS'] += ["WAYLAND_CLIENT", "WAYLAND_CURSOR", "WAYLAND_EGL"]
+		conf.env['PLATFORM_USELIBS'] += ["WAYLAND_SERVER", "WAYLAND_CLIENT", "WAYLAND_CURSOR", "WAYLAND_EGL"]
 	else:
 		conf.fatal('Unsupported Generic Device platform "%s"' % platform)
 		return
