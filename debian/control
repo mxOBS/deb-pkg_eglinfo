@@ -5,6 +5,7 @@ Maintainer: Carlos Rafael Giani
 Build-Depends:
  debhelper (>= 9),
  python,
+ pkg-config,
  imx-gpu-viv-fb-dev,
  imx-gpu-viv-wl-dev,
  libwayland-dev,
