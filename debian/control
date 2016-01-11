@@ -8,7 +8,7 @@ Build-Depends:
  pkg-config,
  imx-gpu-viv-fb-dev,
  imx-gpu-viv-wl-dev,
- libwayland-dev,
+ libwayland-dev (>= 1.6.0),
  imx-gpu-viv-x11-dev,
 Standards-Version: 3.9.5
 Homepage: https://github.com/dv1/eglinfo
