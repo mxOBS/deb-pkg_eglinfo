@@ -7,8 +7,6 @@ Build-Depends:
  python,
  pkg-config,
  imx-gpu-viv-fb-dev,
- imx-gpu-viv-wl-dev,
- libwayland-dev (>= 1.6.0),
  imx-gpu-viv-x11-dev,
 Standards-Version: 3.9.5
 Homepage: https://github.com/dv1/eglinfo
@@ -16,12 +14,6 @@ Homepage: https://github.com/dv1/eglinfo
 Package: eglinfo-fb
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, imx-gpu-viv-fb
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
-
-Package: eglinfo-wl
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, imx-gpu-viv-wl
 Description: <insert up to 60 chars description>
  <insert long description, indented with spaces>
 
