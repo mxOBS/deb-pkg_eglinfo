@@ -1,7 +1,7 @@
 Source: eglinfo
-Section: unknown
+Section: utils
 Priority: optional
-Maintainer: Carlos Rafael Giani
+Maintainer: Carlos Rafael Giani <dv@pseudoterminal.org>
 Build-Depends:
  debhelper (>= 9),
  python,
@@ -16,17 +16,17 @@ Homepage: https://github.com/dv1/eglinfo
 Package: eglinfo-fb
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, imx-gpu-viv-fb
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: display EGL information (fb)
+ Queries libEGL for display and rendering details. Framebuffer Variant.
 
 Package: eglinfo-wl
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, imx-gpu-viv-wl
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: display EGL information (wl)
+ Queries libEGL for display and rendering details. Wayland Variant.
 
 Package: eglinfo-x11
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, imx-gpu-viv-x11
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: display EGL information (x11)
+ Queries libEGL for display and rendering details. X11 Variant.
