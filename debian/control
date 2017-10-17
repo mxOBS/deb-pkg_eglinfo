@@ -7,8 +7,6 @@ Build-Depends:
  python,
  pkg-config,
  imx-gpu-viv-fb-dev,
- imx-gpu-viv-wl-dev,
- libwayland-dev (>= 1.6.0),
  imx-gpu-viv-x11-dev,
  libx11-dev,
 Standards-Version: 3.9.5
@@ -19,12 +17,6 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, imx-gpu-viv-fb
 Description: display EGL information (fb)
  Queries libEGL for display and rendering details. Framebuffer Variant.
-
-Package: eglinfo-wl
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, imx-gpu-viv-wl
-Description: display EGL information (wl)
- Queries libEGL for display and rendering details. Wayland Variant.
 
 Package: eglinfo-x11
 Architecture: any
