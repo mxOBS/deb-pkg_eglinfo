@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Carlos Rafael Giani <dv@pseudoterminal.org>
 Build-Depends:
  debhelper (>= 9),
- python,
+ python3,
  pkg-config,
  imx-gpu-viv-fb-dev,
  imx-gpu-viv-wl-dev,
