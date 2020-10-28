@@ -33,6 +33,7 @@ override_dh_auto_clean:
 override_dh_auto_install:
 	# FB
 	env \
+		CXXFLAGS="-DEGL_API_FB" \
 		LDFLAGS="-L/usr/lib/galcore/fb -L/usr/lib/galcore" \
 		./waf configure \
 		--prefix=/usr \
@@ -45,6 +46,7 @@ override_dh_auto_install:
 
 	# WL
 	env \
+		CXXFLAGS="-DEGL_API_FB -DWL_EGL_PLATFORM" \
 		LDFLAGS="-L/usr/lib/galcore/wl -L/usr/lib/galcore" \
 		./waf configure \
 		--prefix=/usr \
