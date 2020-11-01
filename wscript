@@ -230,7 +230,7 @@ def configure_imx6_device(conf, platform):
 	conf.env['WITH_APIS'] = ['GLES2', 'OPENVG']
 	if platform == "x11":
 		check_x11(conf)
-		check_vivante_egl(conf, None)
+		check_vivante_egl(conf, ['EGL_API_X11'])
 		conf.env['PLATFORM_SOURCE'] = ['src/platform_x11_generic.cpp']
 		conf.env['PLATFORM_USELIBS'] += ["X11"]
 		conf.env['WITH_APIS'] += ['OPENGL']
