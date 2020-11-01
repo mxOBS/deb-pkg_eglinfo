@@ -38,7 +38,8 @@ override_dh_auto_install:
 		./waf configure \
 		--prefix=/usr \
 		--device=imx6 \
-		--platform=fb
+		--platform=fb \
+		|| (cat build/config.log && false)
 	./waf build
 	./waf install \
 		--destdir=$(DESTDIR_FB)
@@ -51,7 +52,8 @@ override_dh_auto_install:
 		./waf configure \
 		--prefix=/usr \
 		--device=imx6 \
-		--platform=wayland
+		--platform=wayland \
+		|| (cat build/config.log && false)
 	./waf build
 	./waf install \
 		--destdir=$(DESTDIR_WL)
@@ -63,7 +65,8 @@ override_dh_auto_install:
 		./waf configure \
 		--prefix=/usr \
 		--device=imx6 \
-		--platform=x11
+		--platform=x11 \
+		|| (cat build/config.log && false)
 	./waf build
 	./waf install \
 		--destdir=$(DESTDIR_X11)
